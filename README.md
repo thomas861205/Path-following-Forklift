@@ -1,3 +1,5 @@
+<img src="img/embedfinal0.JPG" width="500" height="800">
+
 # 1. K64F
 
 The code that K64F runs is used to handle the RPC and the uLCD display.
@@ -30,6 +32,13 @@ Udoo Neo runs the python code "[udoo_control_center.py](#udoo)"
 - [draw_line](#draw_line)
 
 - [Pikachu](#Pikachu) from kerasOnUbuntu
+
+# 3. Not Integrated
+
+- mqtt_clipu:
+
+    - the code enable a device to be a publish and a subscriber at a same time. Basically what I do is just put mqtt_client and mqtt_publisher together. The crucial modification is to substitute "client.loop_forever()" to "client.loop_start()". The former is a blocking functon, which means you are always listening thus cannot publish on topics. The "loop_start()" runs in background, it gets triggered only when there is difference on subscribed topics.
+#
 
 ## <a name="calibrate"></a> calibrate
 
