@@ -10,7 +10,7 @@ from calibrate import *
 from draw_line import get_yellow, get_white, get_red, get_range
 from get_contours import get_gray_countour, contour_dump
 from select_contours import contour_leftest, remove_contour, contour_largest
-# from kerasOnUbuntu import pikachu
+from kerasOnUbuntu import pikachu
 
 redline_cnt = 0
 
@@ -166,9 +166,9 @@ if __name__ == "__main__":
 	time.sleep(1)
 
 
-	# ret, img = vc.read()
+	ret, img = vc.read()
 
-	# pikachu( img )
+	pikachu( img )
 
 	ServoCtrl(-50, 1)
 

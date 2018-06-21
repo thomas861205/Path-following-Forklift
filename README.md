@@ -1,43 +1,68 @@
 # 1. K64F
 
-The code that K64F runs contains the IR gesture, XBee, uLCD modules. Using hand gestures as input, the corresponding function is determined and the command will be sent to the PC through XBee, and the result will be display on the uLCD.
+The code that K64F runs is used to handle the RPC and the uLCD display.
 
-The wire connection is just as same as the labs are.
+RPC functions support the control of two continuous servo motors (wheels), which take commands from Udoo Neo.
 
-# 2. PC
+uLCD displays the result of the picture on the box -- either Doraemon or Pikachu.
 
-PC runs python codes "main.py", which intakes the command from K64F and executes. It supports the following functions:
+I add an addtional standard servo as a lifter to pick up the box. But when I do this, the other two continuous servos start to jiggle, which seems very 
+strange to me since I have already adjust all servos so that when they are set to zero, all of them should be steady. So I dig into the 
+parallax_stdservo.h and notice there are some difference between parallax_servo.h. Thus I add
 
-- Swipe UP for [git lab crawler](#git lab crawler)
+```
+#ifndef PARALLAX_STDSERVO_H
+#define PARALLAX_STDSERVO_H
+.
+.
+.
+#endif
+```
+just like the code in parallax_servo.h. To my big surprise, somehow they stop jiggling! I also modified the bbcar_init.cpp and bbcar_rpc.cpp so that it can properly controll the lifter.
 
-- Swipe LEFT to [display the content](#display the content) of your git lab repositories
+# 2. Udoo Neo
 
-- Swipe RIGHT to select some [basic shell commands](#basic shell commands)
+Udoo Neo runs the python code "[udoo_control_center.py](#udoo)"
+, which includes the following functions (only list modified):
 
-## <a name="git lab crawler"></a> git lab crawler
+- [calibrate](#calibrate) from calibrate
 
-main.py imports test_selenium.git_lab_inquiry
+- [draw_line](#draw_line)
 
-test_selenium.git_lab_inquiry is a web crawler, which is used to retrieve data on Internet automatedly. It uses a invisible web browser - PhantomJS as a simulated user to request a html and using some functions to locate the target html tags, thus collecting data and storing in the local PC files.
+- [Pikachu](#Pikachu) from kerasOnUbuntu
 
-## <a name="display the content"></a> display the content
+## <a name="calibrate"></a> calibrate
 
-main.py imports serial_put.serialPut and serial_put.sendOneChar
+I set
 
-Both functions are used to send data from PC to K64F through XBee - serial_put.serialPut sends a whole text file while serial_put.sendOneChar only sends a single character.
+```
+transform_ratio = 0.9
+```
 
-When the uLCD screen are full of texts, user need to swipe RIGHT to print next page and swipe LEFT to print previous in serial_put.serialPut. All the text transmission is done in real time since the K64F doesn't have a file system for me to store the data, so it is quite a task for me to do the page turing feature.
+so that the picture contains more part of lines.
 
-## <a name="basic shell commands"></a> basic shell commands
+## <a name="draw_line"></a> draw_line
 
-main.py imports shell_command.oneTimeShell
+I create get_yellow, get_white, get_red so that I can adjust the range when I needed very easily.
 
-shell_command.oneTimeShell creates a subprocess for shell, so basically is should be as powerful as a shell can be. Due to the lack of input modules, it can only support 3 hot commands:
+## <a name="Pikachu"></a> Pikachu
 
-- swipe UP to perform "ls"
+Pikachu classifies the picture to two categories -- Doraemon or Pikachu.
 
-- swipe RIGHT to preform "git status"
+## <a name="udoo"></a> udoo_control_center.py
 
-- swipe DOWN to perform "pwd"
+in "main" function it start to do the opencv thing to make the boebot follow the road. There are some difference from lab's version:
 
-and the function subprocess.check_output() will return the result, then print it on the screen. 
+- In get_contour_from_image:
+
+    - I have a counter for redlines. If there are 20 consecutive frames contain redline, then stop the boe bot.
+
+    - Remove those contours that are left to the yellow to avoid any unwanted contour.
+
+    - Call contour_largest instead of contour_leftest to make better performance.
+
+- In _control_center:
+
+    - set "speed = int(20*abs(turn) + 50)" to make the delay of catching frames and moving less significant.
+
+- Also I add a bunch of functions to make the RPC calls much easier.
