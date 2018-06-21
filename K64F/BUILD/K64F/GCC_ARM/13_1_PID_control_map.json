@@ -1,0 +1,128 @@
+[
+    {
+        "module": "[fill]", 
+        "size": {
+            ".data": 4, 
+            ".bss": 2109, 
+            ".text": 145
+        }
+    }, 
+    {
+        "module": "[lib]/c.a", 
+        "size": {
+            ".data": 2472, 
+            ".bss": 89, 
+            ".text": 38980
+        }
+    }, 
+    {
+        "module": "[lib]/gcc.a", 
+        "size": {
+            ".data": 0, 
+            ".bss": 0, 
+            ".text": 3336
+        }
+    }, 
+    {
+        "module": "[lib]/misc", 
+        "size": {
+            ".data": 4, 
+            ".bss": 28, 
+            ".text": 204
+        }
+    }, 
+    {
+        "module": "[lib]/nosys.a", 
+        "size": {
+            ".data": 0, 
+            ".bss": 0, 
+            ".text": 32
+        }
+    }, 
+    {
+        "module": "bbcar_control/bbcar.o", 
+        "size": {
+            ".data": 0, 
+            ".bss": 156, 
+            ".text": 1579
+        }
+    }, 
+    {
+        "module": "bbcar_control_rpc/bbcar_rpc.o", 
+        "size": {
+            ".data": 0, 
+            ".bss": 1184, 
+            ".text": 574
+        }
+    }, 
+    {
+        "module": "main.o", 
+        "size": {
+            ".data": 0, 
+            ".bss": 468, 
+            ".text": 517
+        }
+    }, 
+    {
+        "module": "mbed-os/drivers", 
+        "size": {
+            ".data": 16, 
+            ".bss": 4, 
+            ".text": 2624
+        }
+    }, 
+    {
+        "module": "mbed-os/features", 
+        "size": {
+            ".data": 0, 
+            ".bss": 184, 
+            ".text": 42
+        }
+    }, 
+    {
+        "module": "mbed-os/hal", 
+        "size": {
+            ".data": 4, 
+            ".bss": 68, 
+            ".text": 1737
+        }
+    }, 
+    {
+        "module": "mbed-os/platform", 
+        "size": {
+            ".data": 260, 
+            ".bss": 105, 
+            ".text": 3795
+        }
+    }, 
+    {
+        "module": "mbed-os/rtos", 
+        "size": {
+            ".data": 168, 
+            ".bss": 6073, 
+            ".text": 10487
+        }
+    }, 
+    {
+        "module": "mbed-os/targets", 
+        "size": {
+            ".data": 12, 
+            ".bss": 416, 
+            ".text": 11515
+        }
+    }, 
+    {
+        "module": "parallax/parallax_servo.o", 
+        "size": {
+            ".data": 0, 
+            ".bss": 76, 
+            ".text": 294
+        }
+    }, 
+    {
+        "summary": {
+            "static_ram": 13900, 
+            "total_flash": 78801
+        }
+    }
+]
