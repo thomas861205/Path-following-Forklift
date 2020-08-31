@@ -1,4 +1,4 @@
-<img src="img/embedfinal0.JPG" width="500" height="600">
+<img src="img/embedfinal_trimmed.JPG" width="500" height="600">
 
 # 1. K64F
 
