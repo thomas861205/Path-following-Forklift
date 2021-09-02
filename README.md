@@ -1,6 +1,6 @@
 # Mini Path-following Forklift
 
-Demo video ⬇️
+Demo video ⬇️ (My voice was pretty dead cuz I stayed up all night.)
 
 [![alt text](https://img.youtube.com/vi/jcWNxPlbGnE/0.jpg)](https://youtu.be/jcWNxPlbGnE)
 
@@ -20,6 +20,5 @@ Demo video ⬇️
 - display progression bar on uLCD
 - wireless communication with other robots
 
-Look at that BEAST. You'd better watch out Elon.
-
 <img src="img/embedfinal_trimmed.JPG" width="500" height="600">
+Look at that BEAST. You'd better watch out Elon.
